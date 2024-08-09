@@ -1,0 +1,49 @@
+<div class="card">
+  <h4 class="card-title"> Tasks </h4>
+  <div class="card-body">
+    <div class="mb-3">
+      <a [routerLink]="'/pages/AjouterTacheProjet'" class="btn btn-primary">
+        <i class="fas fa-plus"></i> Add New Task
+      </a>
+    </div>
+<div *ngIf="taches.length > 0; else noTaches">
+  <table class="styled-table">
+    <thead>
+      <tr>
+        <th>Description</th>
+        <th>Date Creation</th>
+        <th>User</th>
+        <th>Date Debut</th>
+        <th>Date Fin</th>
+        <th>Role Projet</th>
+        <th>Projet</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let tache of taches">
+        <td>{{ tache.description }}</td>
+        <td>{{ tache.dateCreation | date }}</td>
+        <td>{{ tache.user }}</td>
+        <td>{{ tache.dateDebutTache | date }}</td>
+        <td>{{ tache.dateFinTache | date }}</td>
+        <td>{{ tache.tacheProjet | titlecase }}</td> <!-- Display role in title case -->
+        <td>{{ tache.projet.nom_Projet }}</td> <!-- Assuming 'name' is the property in Projet -->
+        <td>
+          <button 
+    [routerLink]="['/pages/ModifierTacheProjet', tache.idTache]"
+    class="btn btn-primary d-flex align-items-center"
+>
+    <i data-feather="edit" class="text-white cursor-pointer"></i> Modifier
+</button>
+
+                <button (click)="deleteTache(tache.idTache)">Supprimer</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<ng-template #noTaches>
+  <p>No tasks found.</p>
+</ng-template>

@@ -1,0 +1,51 @@
+<div class="ajouter-projet-container">
+  <div class="card">
+    <div class="card-header">
+      <h2>Add a Project</h2>
+    </div>
+    <div class="card-body">
+    
+    <form #projetForm="ngForm" (ngSubmit)="saveProjet(projetForm.value)">
+      <div class="form-group">
+        <label for="Nom_Projet">Name of the Project </label>
+        <input type="text" id="nom_Projet" name="nom_Projet" ngModel class="form-control" required>
+      </div>
+  
+      <div class="form-group">
+        <label for="Client">Client</label>
+        <input type="text" id="client" name="client" ngModel class="form-control" required minlength="2" maxlength="50">
+      </div>
+  
+      <div class="form-group">
+        <label for="Project_Manager">Project Manager</label>
+        <input type="text" id="project_Manager" name="project_Manager" ngModel class="form-control" required>
+      </div>
+  
+      <div class="form-group">
+        <label for="Description_Projet">Project Description</label>
+        <textarea id="description_Projet" name="description_Projet" ngModel class="form-control" required></textarea>
+      </div>
+  
+      
+      <div class="form-group">
+        <label for="DateDebut_Projet">Start Date</label>
+        <input type="date" id="dateDebut_Projet" name="dateDebut_Projet" ngModel class="form-control" required #startDate="ngModel">
+        <div *ngIf="startDate.invalid && (startDate.touched || startDate.dirty)" class="text-danger">
+          Start Date is required.
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="DateFin_Projet">End Date</label>
+        <input type="date" id="dateFin_Projet" name="dateFin_Projet" ngModel class="form-control" required #endDate="ngModel">
+        <div *ngIf="endDate.invalid && (endDate.touched || endDate.dirty)" class="text-danger">
+          End Date is required.
+        </div>
+        <div *ngIf="endDate.value && startDate.value && endDate.value < startDate.value" class="text-danger">
+          End Date must be after Start Date.
+        </div>
+      </div>
+  
+      <button type="submit" class="btn btn-primary" [disabled]="!projetForm.valid">Add Project</button>
+    </form>
+  </div>

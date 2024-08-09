@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Behavior-Driven Development (BDD)</title>
+    <style>
+        /* General body styling */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 20px;
+        }
+
+        /* Card styling */
+        nb-card {
+            background-color: #ffffff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+/* Styling for the Actors card */
+.actors-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
+}
+
+.actor {
+    margin: 10px;
+}
+
+.actor img {
+    max-width: 100px;
+    height: auto;
+    border-radius: 50%;
+}
+
+.actor p {
+    margin-top: 10px;
+    font-weight: bold;
+}
+/* Card content styling */
+.card-content {
+    flex-grow: 1;
+}
+
+        /* Card body styling */
+        nb-card-body {
+            padding: 20px;
+        }
+
+        /* Image styling */
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto 20px;
+        }
+
+        /* Title styling */
+        h3 {
+            font-size: 1.5em;
+            color: #333333;
+            margin-bottom: 10px;
+        }
+
+        /* Paragraph styling */
+        p {
+            font-size: 1em;
+            color: #666666;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        /* List styling */
+        ul {
+            list-style-type: disc;
+            padding-left: 20px;
+            color: #666666;
+        }
+
+      /*  ul li {
+            margin-bottom: 10px;
+            cursor: pointer;
+            color: #007bff;
+        }
+
+        ul li:hover {
+            text-decoration: underline;
+        }*/
+
+        /* Description styling */
+        .description {
+            margin-top: 10px;
+            font-size: 0.9em;
+            color: #444444;
+            display: none;
+        }
+
+        /* Button styling */
+        button[nbButton] {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1em;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+
+        button[nbButton]:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+
+        /* Stepper label styling */
+        nb-step [label] {
+            color: #007bff;
+            font-weight: bold;
+        }
+
+        .form-container {
+            max-width: 500px;
+            margin: 50px auto;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+  
+        .form-title {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+        }
+  
+        .form-group {
+            margin-bottom: 20px;
+        }
+  
+        .form-group label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+            color: #555;
+        }
+  
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            transition: border-color 0.3s ease;
+        }
+  
+        .form-group input:focus {
+            outline: none;
+            border-color: #007bff;
+        }
+        .add-btn {
+    display: inline-block;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1em;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.add-btn:hover {
+    background-color: #218838;
+}
+
+.form-container {
+    max-width: 500px;
+    margin: 50px auto;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
+
+  
+        .btn {
+            display: inline-block;
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+  
+        .btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <nb-card class="col-md-12 col-lg-12 col-xxxl-12">
+        <nb-card-body>
+            <div>
+                <img src="/assets/images/bdd.PNG" alt="BDD Diagram">
+            </div>
+            <nb-stepper orientation="horizontal">
+                <nb-step [label]="labelOne">
+                    <ng-template #labelOne>Definition</ng-template>
+                    <h3>Definition of Behavior-Driven Development (BDD)</h3>
+                    <p>Behavior-Driven Development (BDD) is a software development methodology that focuses on the expected behavior of a system from the perspective of its users. Unlike traditional methods that concentrate on unit tests, BDD emphasizes collaboration among developers, testers, and business experts from the early stages of the development process. This is achieved through specifications written in the form of scenarios that are understandable by all stakeholders.</p>
+                    <button nbButton disabled nbStepperNext>prev</button>
+                    <button nbButton nbStepperNext>next</button>
+                </nb-step>
+                <nb-step [label]="labelTwo">
+                    <ng-template #labelTwo>Why</ng-template>
+                    <div class="form-container">
+                        <h2 class="form-title">Why Use Behavior-Driven Development (BDD)</h2>
+                        <button class="btn add-btn" (click)="toggleWhyForm()">
+                            <span>+</span> Add Why
+                        </button>
+                        <div *ngIf="showWhyForm">
+                            <form id="whyForm" (ngSubmit)="onSubmitWhy()" #whyForm="ngForm">
+                                <div class="form-group">
+                                    <label for="why">Add Why</label>
+                                    <input
+                                        type="text"
+                                        id="why"
+                                        [(ngModel)]="whyadd.text"
+                                        name="why"
+                                        placeholder="Enter Why"
+                                        required
+                                        #why="ngModel"
+                                        [ngClass]="{ 'is-invalid': why.invalid && why.touched }"
+                                    />
+                                    <div *ngIf="why.invalid && why.touched" class="invalid-feedback">
+                                        Why is required.
+                                    </div>
+                                </div>
+                                <button class="btn" type="submit" [disabled]="whyForm.invalid">Submit</button>
+                            </form>
+                        </div>
+                        <ul *ngFor="let why of whys let i = index">
+                            <li>{{ why.text }}</li>
+                            <div class="buttons-row">
+                                <button (click)="deleteSWhy(why.id)" nbButton hero>Supprimer</button>
+                            </div>
+                        </ul>
+                    </div>
+                    <button nbButton nbStepperPrevious>prev</button>
+                    <button nbButton nbStepperNext>next</button>
+                </nb-step>
+                
+                <nb-step [label]="labelThree">
+                    <ng-template #labelThree>How</ng-template>
+                    <div class="form-container">
+                        <h2 class="form-title">Ajouter </h2>
+                        <form id="myForm" (ngSubmit)="onSubmit()" #myForm="ngForm">
+                            <div class="form-group">
+                                <label for="how">Add How</label>
+                                <input
+                                    type="text"
+                                    id="how"
+                                    [(ngModel)]="howadd.text"
+                                    name="how"
+                                    placeholder="Enter How"
+                                    required
+                                    #how="ngModel"
+                                    [ngClass]="{ 'is-invalid': how.invalid && how.touched }"
+                                />
+                                <div *ngIf="how.invalid && how.touched" class="invalid-feedback">
+                                    How is required.
+                                </div>
+                            </div>
+                        
+                            <!-- Add more form fields as needed -->
+                        
+                            <button class="btn" type="submit">Submit</button>
+                        </form>
+                    </div>
+                    <h3>How to Implement Behavior-Driven Development (BDD)</h3>
+                    <ul *ngFor="let how of hows let i = index">
+                        <li>{{how.text}}</li>
+                        <div class="buttons-row">
+                            
+                            <button (click)="deleteSHow(how.id)"  nbButton hero>
+                              Supprimer
+                            </button>
+                          </div>
+
+                    </ul>
+                    <button nbButton nbStepperPrevious>prev</button>
+                    <button nbButton disabled nbStepperNext>next</button>
+                </nb-step>
+            </nb-stepper>
+        </nb-card-body>
+    </nb-card>
+
+    <!-- New card for advantages and limitations -->
+    <nb-card class="col-md-12 col-lg-12 col-xxxl-12">
+        <nb-card-body>
+            <!--img src="/assets/images/advantages.png" alt="Advantages Image" class="card-image"-->
+            <div class="card-content">
+                <h3>Advantages of Behavior-Driven Development (BDD)</h3>
+                <div class="form-container">
+                    <h2 class="form-title">Ajouter </h2>
+                    <form id="myForm" (ngSubmit)="onSubmitAvantage()" #myForm="ngForm">
+                        <div class="form-group">
+                            <label for="how">Add Advantages</label>
+                            <input
+                                type="text"
+                                id="how"
+                                [(ngModel)]="avantageadd.text"
+                                name="how"
+                                placeholder="Enter How"
+                                
+                            />
+                            
+                        </div>
+                    
+                        <!-- Add more form fields as needed -->
+                    
+                        <button class="btn" type="submit" >Submit</button>
+                    </form>
+                </div>
+                <ul id="advantages" *ngFor="let avantage of avantages let i = index">
+                        <li >{{avantage.text}}</li>
+                        <div class="buttons-row">
+                            
+                            <button (click)="deleteSAvantage(avantage.id)"  nbButton hero>
+                              Supprimer
+                            </button>
+                          </div>
+
+                    </ul>
+                <div class="description" id="advantage-description"></div>
+
+                <h3>Limitations of Behavior-Driven Development (BDD)</h3>
+                <div class="form-container">
+                    <h2 class="form-title">Ajouter </h2>
+                    <form id="myForm" (ngSubmit)="onSubmitLimitation()" #myForm="ngForm">
+                        <div class="form-group">
+                            <label for="how">Add Limitations</label>
+                            <input
+                                type="text"
+                                id="how"
+                                [(ngModel)]="limitationadd.text"
+                                name="how"
+                                placeholder="Enter How"
+                                required
+                                #Limitations="ngModel"
+                                [ngClass]="{ 'is-invalid': Limitations.invalid && Limitations.touched }"
+                            />
+                            <div *ngIf="Limitations.invalid && Limitations.touched" class="invalid-feedback">
+                                Limitations is required.
+                            </div>
+                        </div>
+                    
+                        <!-- Add more form fields as needed -->
+                    
+                        <button class="btn" type="submit">Submit</button>
+                    </form>
+                </div>
+                <ul id="limitations" *ngFor="let limitation of limitations let i = index">
+                    <li >{{limitation.text}}</li>
+                    <div class="buttons-row">
+                        
+                        <button (click)="deleteSLimitation(limitation.id)"  nbButton hero>
+                          Supprimer
+                        </button>
+                      </div>
+
+                </ul>
+                <div class="description" id="limitation-description"></div>
+            </div>
+        </nb-card-body>
+    </nb-card>
+    <nb-card class="col-md-12 col-lg-12 col-xxxl-12">
+        <nb-card-body>
+            <h3>Actors</h3>
+            <div class="actors-container">
+                <div class="actor">
+                    <img src="/assets/images/devolper-removebg-preview (1).png" alt="Developer">
+                    <p>Developer</p>
+                </div>
+                <div class="actor">
+                    <img src="/assets/images/testeur-removebg-preview.png" alt="Tester">
+                    <p>Tester</p>
+                </div>
+                <div class="actor">
+                    <img src="assets/images/Product_owner-removebg-preview.png" alt="Product Owner">
+                    <p>Product Owner</p>
+                </div>
+            </div>
+        </nb-card-body>
+    </nb-card>
+    
+    <nb-card class="col-md-12 col-lg-12 col-xxxl-12">
+        <nb-card-body>
+            <div class="card-content">
+                <h3>Adapting Behavior-Driven Development (BDD)</h3>
+                <p>BDD can be adapted to different contexts and scenarios by adjusting the level of detail in the specifications and selecting the tools and frameworks that best fit the technologies and skills of the teams.</p>
+            </div>
+            <img src="/assets/images/bbdd picture.PNG" alt="Adapting BDD Image" class="card-image">
+            <h3>BDD Process Steps</h3>
+            <p>This image outlines the Behavior-Driven Development (BDD) process in several key steps:</p>
+            <ul>
+                <li>
+                    <strong>Initial Conversation:</strong>
+                    <ul>
+                        <li><strong>Actors:</strong> Product owner and users.</li>
+                        <li><strong>Action:</strong> They discuss what they need from the product.</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Requirements Elaboration:</strong>
+                    <ul>
+                        <li><strong>Actors:</strong> Product owner, developer, and tester.</li>
+                        <li><strong>Action:</strong> Together, they elaborate on the requirements based on the initial discussion.</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Defining Scenarios:</strong>
+                    <ul>
+                        <li><strong>Actors:</strong> Development team (product owner, developer, and tester).</li>
+                        <li><strong>Action:</strong> They define the requirements as structured scenarios in clear and understandable terms.</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Guiding Developers:</strong>
+                    <ul>
+                        <li><strong>Actors:</strong> Developers.</li>
+                        <li><strong>Action:</strong> The scenarios guide the developers and serve as the basis for automated tests.</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Tester Utilization:</strong>
+                    <ul>
+                        <li><strong>Actors:</strong> Testers.</li>
+                        <li><strong>Action:</strong> Testers use these scenarios as the basis for their tests to ensure that each feature meets the defined expectations.</li>
+                    </ul>
+                </li>
+            </ul>
+            <button nbButton status="primary" [routerLink]="['/pages/AjouterProjet']">Let's Get Started with New Project</button>
+
+                </nb-card-body>
+    </nb-card>
+    
+</body>
+</html>
