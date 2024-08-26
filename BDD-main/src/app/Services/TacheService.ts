@@ -46,4 +46,11 @@ export class TacheService {
   deleteTache(id: number): Observable<any> {
     return this.http.delete<any>(`${this.baseUrl}/Deletetache/${id}`);
   }
+
+
+
+  getRolesCountByProject(projectId: number): Observable<Map<string, number>> {
+    return this.http.get<Map<string, number>>(`${this.baseUrl}/count-roles/${projectId}`);
+  }
+  
 }

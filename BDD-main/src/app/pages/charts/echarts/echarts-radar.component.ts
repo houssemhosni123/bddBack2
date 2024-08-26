@@ -1,73 +1,103 @@
 import { AfterViewInit, Component, OnDestroy } from '@angular/core';
 import { NbThemeService } from '@nebular/theme';
+import { TacheService } from '../../../Services/TacheService';
+import { ProjetService } from '../../../Services/ProjetService';
 
 @Component({
   selector: 'ngx-echarts-radar',
   template: `
+    <nb-select placeholder="Select Project" (selectedChange)="onProjectSelect($event)">
+      <nb-option *ngFor="let project of projects" [value]="project.idProjet">
+        {{ project.nom_Projet }}
+      </nb-option>
+    </nb-select>
     <div echarts [options]="options" class="echart"></div>
   `,
 })
 export class EchartsRadarComponent implements AfterViewInit, OnDestroy {
   options: any = {};
   themeSubscription: any;
+  projects: any[] = []; // Array to hold projects
+  selectedProjectId: number;
+  
+  indicators = [
+    { name: 'Developer', max: 100 },
+    { name: 'Manager', max: 100 },
+    { name: 'Tester', max: 100 }
+  ];
 
-  constructor(private theme: NbThemeService) {
-  }
+  colors: any; // Add this line to hold color configuration
+  echarts: any; // Add this line to hold echarts configuration
+
+  constructor(
+    private theme: NbThemeService,
+    private tacheService: TacheService,
+    private projetService: ProjetService
+  ) {}
 
   ngAfterViewInit() {
     this.themeSubscription = this.theme.getJsTheme().subscribe(config => {
+      this.colors = config.variables; // Assign colors here
+      this.echarts = config.variables.echarts; // Assign echarts configuration here
 
-      const colors: any = config.variables;
-      const echarts: any = config.variables.echarts;
+      // Fetch projects to populate the dropdown
+      this.projetService.getAllProjets().subscribe(data => {
+        this.projects = data;
+      });
 
-      this.options = {
-        backgroundColor: echarts.bg,
-        color: [colors.danger, colors.warning],
-        tooltip: {},
-        legend: {
-          data: ['Allocated Budget', 'Actual Spending'],
-          textStyle: {
-            color: echarts.textColor,
-          },
-        },
-        radar: {
-          name: {
-            textStyle: {
-              color: echarts.textColor,
-            },
-          },
-          indicator: [
-            { name: 'Sales', max: 6500 },
-            { name: 'Administration', max: 16000 },
-            { name: 'Information Techology', max: 30000 },
-            { name: 'Customer Support', max: 38000 },
-            { name: 'Development', max: 52000 },
-            { name: 'Marketing', max: 25000 },
-          ],
-          splitArea: {
-            areaStyle: {
-              color: 'transparent',
-            },
-          },
-        },
-        series: [
-          {
-            name: 'Budget vs Spending',
-            type: 'radar',
-            data: [
-              {
-                value: [4300, 10000, 28000, 35000, 50000, 19000],
-                name: 'Allocated Budget',
-              },
-              {
-                value: [5000, 14000, 28000, 31000, 42000, 21000],
-                name: 'Actual Spending',
-              },
-            ],
-          },
-        ],
-      };
+      // Initialize the chart with default values
+      this.updateChart();
     });
+  }
+
+  onProjectSelect(projectId: number) {
+    this.selectedProjectId = projectId;
+    this.updateChart();
+  }
+
+  updateChart() {
+    if (this.selectedProjectId) {
+      this.tacheService.getRolesCountByProject(this.selectedProjectId).subscribe(data => {
+        const roleCounts = this.indicators.map(indicator => data[indicator.name] || 0);
+
+        this.options = {
+          backgroundColor: this.echarts.bg,
+          color: [this.colors.primaryLight],
+          tooltip: {},
+          legend: {
+            data: ['Role Count'],
+            textStyle: {
+              color: this.echarts.textColor,
+            },
+          },
+          radar: {
+            name: {
+              textStyle: {
+                color: this.echarts.textColor,
+              },
+            },
+            indicator: this.indicators,
+            splitArea: {
+              areaStyle: {
+                color: 'transparent',
+              },
+            },
+          },
+          series: [
+            {
+              name: 'Role Count',
+              type: 'radar',
+              data: [
+                {
+                  value: roleCounts,
+                  name: 'Role Count',
+                },
+              ],
+            },
+          ],
+        };
+      });
+    }
   }
 
   ngOnDestroy(): void {

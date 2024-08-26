@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { NgxEchartsModule } from 'ngx-echarts';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { ChartModule } from 'angular2-chartjs';
-import { NbCardModule } from '@nebular/theme';
+import { NbCardModule, NbSelectModule } from '@nebular/theme';
 
 import { ThemeModule } from '../../@theme/theme.module';
 
@@ -47,6 +47,7 @@ const components = [
   EchartsAreaStackComponent,
   EchartsBarAnimationComponent,
   EchartsRadarComponent,
+  
 ];
 
 @NgModule({
@@ -57,7 +58,9 @@ const components = [
     NgxChartsModule,
     ChartModule,
     NbCardModule,
+    NbSelectModule,
   ],
+
   declarations: [...routedComponents, ...components],
 })
 export class ChartsModule {}

@@ -27,4 +27,30 @@ export class ProjetService {
   deleteProjet(id: number): Observable<void> {
     return this.http.delete<void>(`${this.baseUrl}/deleteprojet/${id}`);
   }
+
+
+
+  // New methods for counting projects by status
+  countNotStartedProjects(): Observable<number> {
+    return this.http.get<number>(`${this.baseUrl}/count/not-started`);
+  }
+
+  countInProgressProjects(): Observable<number> {
+    return this.http.get<number>(`${this.baseUrl}/count/in-progress`);
+  }
+
+  countCompletedProjects(): Observable<number> {
+    return this.http.get<number>(`${this.baseUrl}/count/completed`);
+  }
+
+
+  
+  countTasksForProjet(id: number): Observable<number> {
+    return this.http.get<number>(`${this.baseUrl}/${id}/tasks/count`);
+  }
+  // Add a method to get all projects with their task counts
+getAllProjectsWithTaskCounts(): Observable<any[]> {
+  return this.http.get<any[]>(`${this.baseUrl}/all-projects-with-task-counts`);
+}
+
 }
