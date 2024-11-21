@@ -5,12 +5,13 @@ import { PagesComponent } from './pages.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ECommerceComponent } from './e-commerce/e-commerce.component';
 import { NotFoundComponent } from './miscellaneous/not-found/not-found.component';
-import { BDDComponent } from './bdd/bdd.component';
-import { AjouterProjetComponent } from './Projet/ajouter-projet/ajouter-projet.component';
-import { AfficherProjetComponent } from './Projet/afficher-projet/afficher-projet.component';
-import { AjouterTacheProjetComponent } from './GestionTacheProjet/ajouter-tache-projet/ajouter-tache-projet.component';
-import { AfficherTacheProjetComponent } from './GestionTacheProjet/afficher-tache-projet/afficher-tache-projet.component';
-import { ModifierTacheProjetComponent } from './GestionTacheProjet/modifier-tache-projet/modifier-tache-projet.component';
+import { BDDComponent } from './BDD_Components/bdd/bdd.component';
+import { AfficherTacheProjetComponent } from './BDD_Components/GestionTacheProjet/afficher-tache-projet/afficher-tache-projet.component';
+import { AjouterTacheProjetComponent } from './BDD_Components/GestionTacheProjet/ajouter-tache-projet/ajouter-tache-projet.component';
+import { ModifierTacheProjetComponent } from './BDD_Components/GestionTacheProjet/modifier-tache-projet/modifier-tache-projet.component';
+import { AfficherProjetComponent } from './BDD_Components/Projet/afficher-projet/afficher-projet.component';
+import { AjouterProjetComponent } from './BDD_Components/Projet/ajouter-projet/ajouter-projet.component';
+
 
 const routes: Routes = [{
   path: '',
@@ -22,7 +23,7 @@ const routes: Routes = [{
     },
     {
       path: 'Projet',
-      loadChildren: () => import('./Projet/Projet.module').then(m => m.ProjetModule),
+      loadChildren: () => import('./BDD_Components/Projet/Projet.module').then(m => m.ProjetModule),
     },
     {
       path: 'Behavior_Driven_Development',

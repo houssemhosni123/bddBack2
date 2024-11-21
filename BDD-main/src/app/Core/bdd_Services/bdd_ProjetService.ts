@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Projet } from '../Models/Projet';
+import { Projet } from '../bdd_Models/bdd_Projet';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProjetService {
 
-  private baseUrl = 'http://localhost:8080/Projet';  // Base URL of your Spring Boot server
+  private baseUrl = 'http://localhost:8085/ManajeroBackend/Projet';  // Base URL of your Spring Boot server
 
   constructor(private http: HttpClient) { }
 

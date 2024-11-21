@@ -1,6 +1,6 @@
 import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
 import { NbThemeService } from '@nebular/theme';
-import { ProjetService } from '../../../Services/ProjetService';
+import { ProjetService } from '../../../Services/bdd_Services/ProjetService';
 
 @Component({
   selector: 'ngx-project-stats-chart',

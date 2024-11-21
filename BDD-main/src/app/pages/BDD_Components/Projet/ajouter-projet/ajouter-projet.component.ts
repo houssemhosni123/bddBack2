@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Projet } from '../../../Models/Projet';
-import { ProjetService } from '../../../Services/ProjetService';
+
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
+import { Projet } from '../../../../Core/bdd_Models/bdd_Projet';
+import { ProjetService } from '../../../../Core/bdd_Services/bdd_ProjetService';
 
 @Component({
   selector: 'ngx-ajouter-projet',

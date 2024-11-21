@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { TacheService } from '../../../Services/TacheService';
-import { Tache } from '../../../Models/Tache';
+import { Tache } from '../../../../Core/bdd_Models/bdd_Tache';
+import { TacheService } from '../../../../Core/bdd_Services/bdd_TacheService';
+
 
 @Component({
   selector: 'ngx-afficher-tache-projet',

@@ -1,7 +1,8 @@
 import { AfterViewInit, Component, OnDestroy } from '@angular/core';
 import { NbThemeService } from '@nebular/theme';
-import { TacheService } from '../../../Services/TacheService';
-import { ProjetService } from '../../../Services/ProjetService';
+import { ProjetService } from '../../../Core/bdd_Services/bdd_ProjetService';
+import { TacheService } from '../../../Core/bdd_Services/bdd_TacheService';
+
 
 @Component({
   selector: 'ngx-echarts-radar',

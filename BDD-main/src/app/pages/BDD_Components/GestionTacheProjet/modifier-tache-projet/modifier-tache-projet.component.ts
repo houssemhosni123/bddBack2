@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Tache } from '../../../Models/Tache';
-import { Projet } from '../../../Models/Projet';
-import { ProjetService } from '../../../Services/ProjetService';
-import { TacheService } from '../../../Services/TacheService';
+import { Projet } from '../../../../Core/bdd_Models/bdd_Projet';
+import { Tache } from '../../../../Core/bdd_Models/bdd_Tache';
+import { ProjetService } from '../../../../Core/bdd_Services/bdd_ProjetService';
+import { TacheService } from '../../../../Core/bdd_Services/bdd_TacheService';
+
+
 
 
 @Component({
@@ -67,7 +69,7 @@ export class ModifierTacheProjetComponent implements OnInit {
   }
   
   updateTask(): void {
-    const id = this.route.snapshot.params.id;
+    const id = this.route.snapshot.params['id'] as string;
     const updatedTache = this.taskDetailsForm.value as Tache;
   
     this.updateTacheById(id, updatedTache);
@@ -75,7 +77,7 @@ export class ModifierTacheProjetComponent implements OnInit {
 
   }
   
-  updateTacheById(id: number, updatedTache: Tache): void {
+ /* updateTacheById(id: number, updatedTache: Tache): void {
     this._TacheService.updateTache(id, updatedTache)
       .subscribe(updated => {
         // Handle success
@@ -85,7 +87,17 @@ export class ModifierTacheProjetComponent implements OnInit {
         // Handle error
         console.error('Error updating task:', error);
       });
-  }
+  }*/
+      updateTacheById(id: string, updatedTache: Tache): void {
+        this._TacheService.updateTache(id, updatedTache)
+          .subscribe(updated => {
+            console.log('Task updated successfully:', updated);
+          }, error => {
+            console.error('Error updating task:', error);
+          });
+    }
+    
+
   
 
   
@@ -107,16 +119,14 @@ export class ModifierTacheProjetComponent implements OnInit {
   
 
   addProjectToTask(projet: Projet): void {
-    const dateDebutTache = new Date(projet.dateDebut_Projet);
-    const dateFinTache = new Date(projet.dateFin_Projet);
-
     this.taskDetailsForm.patchValue({
       selectedProject: `${projet.nom_Projet}`,
       projet: projet.idProjet,
-      dateDebutTache: dateDebutTache,
-      dateFinTache: dateFinTache
+      dateDebutTache: projet.dateDebut_Projet, // Keep it as string
+      dateFinTache: projet.dateFin_Projet // Keep it as string
     });
-  }
+}
+
   
   
 

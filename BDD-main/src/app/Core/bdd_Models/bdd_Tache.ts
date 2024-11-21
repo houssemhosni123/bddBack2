@@ -1,4 +1,4 @@
-import { Projet } from "./Projet";
+import { Projet } from "./bdd_Projet";
 
 export interface Tache {
     idTache?: number; // Made optional for creation

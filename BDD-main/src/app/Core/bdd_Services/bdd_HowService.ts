@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { How } from '../Models/How';
+import { How } from '../bdd_Models/bdd_How';
 
 @Injectable({
   providedIn: 'root'
 })
 export class HowService {
 
-  private baseUrl = 'http://localhost:8080/How';  // Base URL of your Spring Boot server
+  private baseUrl = 'http://localhost:8085/ManajeroBackend/How';  // Base URL of your Spring Boot server
 
   constructor(private http: HttpClient) { }
 

@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Tache } from '../Models/Tache';
+import { Tache } from '../bdd_Models/bdd_Tache';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TacheService {
 
-  private baseUrl = 'http://localhost:8080/Tache';
+  private baseUrl = 'http://localhost:8085/ManajeroBackend/Tache';
 
   constructor(private http: HttpClient) { }
 
@@ -38,7 +38,7 @@ export class TacheService {
     return this.http.get<Tache>(`${this.baseUrl}/GetTache/${id}`);
   }
   // Method to update a task
-  updateTache(id: number, tache: Tache): Observable<Tache> {
+  updateTache(id: string, tache: Tache): Observable<Tache> {
     return this.http.put<Tache>(`${this.baseUrl}/Updatetache/${id}`, tache);
   }
 

@@ -1,11 +1,13 @@
-import { User } from './../../../@core/data/users';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Projet, Status } from '../../../Models/Projet';
-import { Tache } from '../../../Models/Tache';
-import { ProjetService } from '../../../Services/ProjetService';
-import { TacheService } from '../../../Services/TacheService';
+import { ProjetService } from '../../../../Core/bdd_Services/bdd_ProjetService';
+import { Projet, Status } from '../../../../Core/bdd_Models/bdd_Projet';
+import { Tache } from '../../../../Core/bdd_Models/bdd_Tache';
+import { TacheService } from '../../../../Core/bdd_Services/bdd_TacheService';
+
+
+
 
 @Component({
   selector: 'app-ajouter-tache-projet',

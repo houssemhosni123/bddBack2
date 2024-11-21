@@ -1,13 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { HowService } from '../../Services/HowService';
-import { WhyService } from '../../Services/WhyService';
-import { LimitationService } from '../../Services/LimitationService';
-import { AvantageService } from '../../Services/AvantageService';
-import { How } from '../../Models/How';
-import { Why } from '../../Models/Why';
-import { Limitation } from '../../Models/Limitation';
-import { Avantage } from '../../Models/Avantage';
+import { Avantage } from '../../../Core/bdd_Models/bdd_Avantage';
+import { How } from '../../../Core/bdd_Models/bdd_How';
+import { Limitation } from '../../../Core/bdd_Models/bdd_Limitation';
+import { Why } from '../../../Core/bdd_Models/bdd_Why';
+import { AvantageService } from '../../../Core/bdd_Services/bdd_AvantageService';
+import { HowService } from '../../../Core/bdd_Services/bdd_HowService';
+import { LimitationService } from '../../../Core/bdd_Services/bdd_LimitationService';
+import { WhyService } from '../../../Core/bdd_Services/bdd_WhyService';
+
+
+
 
 @Component({
   selector: 'ngx-bdd',

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ProjetService } from '../../../Services/ProjetService';
-import { Projet } from '../../../Models/Projet';
+import { ProjetService } from '../../../../Core/bdd_Services/bdd_ProjetService';
+import { Projet } from '../../../../Core/bdd_Models/bdd_Projet';
+
+
 
 @Component({
   selector: 'ngx-afficher-projet',

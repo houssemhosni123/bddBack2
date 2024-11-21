@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Avantage } from '../Models/Avantage';
+import { Avantage } from '../bdd_Models/bdd_Avantage';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AvantageService {
 
-  private baseUrl = 'http://localhost:8080/Avantage';  // Base URL of your Spring Boot server
+  private baseUrl = 'http://localhost:8085/ManajeroBackend/Avantage';  // Base URL of your Spring Boot server
 
   constructor(private http: HttpClient) { }
 

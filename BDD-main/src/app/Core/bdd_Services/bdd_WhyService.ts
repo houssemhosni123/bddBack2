@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Why } from '../Models/Why';
+import { Why } from '../bdd_Models/bdd_Why';
 
 @Injectable({
   providedIn: 'root'
 })
 export class WhyService {
 
-  private baseUrl = 'http://localhost:8080/Why';  // Base URL of your Spring Boot server
+  private baseUrl = 'http://localhost:8085/ManajeroBackend/Why';  // Base URL of your Spring Boot server
 
   constructor(private http: HttpClient) { }
 
